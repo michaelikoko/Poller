@@ -30,4 +30,4 @@ urlpatterns = [
     path("election/<int:id>/results", ElectionResultsView.as_view(), name="results_url"),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 #    path('accounts/', include('django.contrib.auth.urls')),
-]  + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]  #+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
