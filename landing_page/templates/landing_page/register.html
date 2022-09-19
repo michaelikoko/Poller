@@ -14,7 +14,7 @@
 <body>
     {% load crispy_forms_tags %}
     <main class="d-flex flex-column align-items-center justify-content-center mt-2 mb-3 p-2">
-        <h2 class="mb-4 mt-2 fw-bold fs-2 text-info"><a href="{% url 'landing_page:landing_page' %}" class="text-decoration-none">ONLINE POLLS</a></h2>
+        <h2 class="mb-4 mt-2 fw-bold fs-2 text-info"><a href="{% url 'landing_page:landing_page' %}" class="text-decoration-none">POLLER</a></h2>
         <form method="post" class="form card w-100 needs-validation" novalidate oninput='password2.setCustomValidity(password.value != password2.value ? "Passwords do not match." : "")'>
             
             {% csrf_token %}
