@@ -53,6 +53,9 @@ INSTALLED_APPS = [
     "rest_framework",
     "crispy_forms",
     "crispy_bootstrap5",
+    
+    'cloudinary_storage',
+    'cloudinary',
 ]
 
 MIDDLEWARE = [
@@ -149,9 +152,17 @@ if not DEBUG:
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'dmdm4nogv',
+    'API_KEY': 'dmdm4nogv',
+    'API_SECRET': 'FnQ1YngbzUbpgQXqGATKbLXwkJI',
+}
+
 # Base url to serve media files  
-MEDIA_URL = '/media/'  
   
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.RawMediaCloudinaryStorage'
+MEDIA_URL = '/poller/media/'
+
 # Path where media is stored  
 import os
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/') 
