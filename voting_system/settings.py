@@ -154,7 +154,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CLOUDINARY_STORAGE = {
     'CLOUD_NAME': 'dmdm4nogv',
-    'API_KEY': 'dmdm4nogv',
+    'API_KEY': '812873894272894',
     'API_SECRET': 'FnQ1YngbzUbpgQXqGATKbLXwkJI',
 }
 
