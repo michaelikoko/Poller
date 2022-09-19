@@ -21,7 +21,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 import os
-SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-s&642!x_qklc7f5)$ev$!klxfgd-9du9o%y)l@6v(j&jcut_-!')
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'django-insecure-s&642!x_qklc7f5)$ev$!klxfgd-9du9o%y)l@6v(j&jcut_-!')
 
 CSRF_COOKIE_SECURE = True
 
@@ -32,7 +32,7 @@ SECURE_SSL_REDIRECT = True
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'False'
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'poller.onrender.com']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 
 # Application definition
@@ -53,14 +53,10 @@ INSTALLED_APPS = [
     "rest_framework",
     "crispy_forms",
     "crispy_bootstrap5",
-    
-    'cloudinary_storage',
-    'cloudinary',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -92,14 +88,12 @@ WSGI_APPLICATION = 'voting_system.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
-import dj_database_url
 
 DATABASES = {
-    'default': dj_database_url.config(
-        # Feel free to alter this value to suit your needs.
-        default='postgresql://postgres:postgres@localhost:5432/mysite',
-        conn_max_age=600
-    )
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
 }
 
 
@@ -139,30 +133,14 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
-if not DEBUG:
-    # Tell Django to copy statics to the `staticfiles` directory
-    # in your application directory on Render.
-    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-
-    # Turn on WhiteNoise storage backend that takes care of compressing static files
-    # and creating unique names for each version so they can safely be cached forever.
-    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': 'dmdm4nogv',
-    'API_KEY': '812873894272894',
-    'API_SECRET': 'FnQ1YngbzUbpgQXqGATKbLXwkJI',
-}
-
 # Base url to serve media files  
+MEDIA_URL = '/media/'  
   
-DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.RawMediaCloudinaryStorage'
-MEDIA_URL = '/poller/media/'
-
 # Path where media is stored  
 import os
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/') 
@@ -188,4 +166,3 @@ EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 EMAIL_USE_TLS = False
 EMAIL_USE_SSL = True
-
