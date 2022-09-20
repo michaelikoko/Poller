@@ -11,6 +11,7 @@ Upon successful launch of the election, each registered voter receive an email c
 
 When the election is closed, each registered voter receives an email notifying them of the close of the election and a url to view results.
 
+The live site can be found [here](https://poller.pythonanywhere.com/)
 ## Tools used
 ### Front-end
 - React
